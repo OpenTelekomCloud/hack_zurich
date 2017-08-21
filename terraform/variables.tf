@@ -1,9 +1,13 @@
 ### OpenStack Credentials
-variable "userid" {}
+variable "username" {}
 
 variable "password" {}
 
-variable "tenantid" {}
+variable "domain_name" {}
+
+variable "tenant_name" {
+  default = "eu-de"
+}
 
 variable "endpoint" {
   default = "https://iam.eu-de.otc.t-systems.com:443/v3"

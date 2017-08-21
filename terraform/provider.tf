@@ -1,6 +1,7 @@
-provider "openstack" { 
-    user_id     = "${var.userid}"
-    password    = "${var.password}"
-    tenant_id   = "${var.tenantid}"
-    auth_url    = "${var.endpoint}"
+provider "openstack" {
+  user_name   = "${var.username}"
+  password    = "${var.password}"
+  tenant_name = "${var.tenant_name}"
+  domain_name = "${var.domain_name}"
+  auth_url    = "${var.endpoint}"
 }
