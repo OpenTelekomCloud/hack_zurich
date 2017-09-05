@@ -20,7 +20,7 @@ resource "null_resource" "provision" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    host        = "${openstack_network_floatingip_v2.fip.address}"
+    host        = "${openstack_networking_floatingip_v2.fip.address}"
     private_key = "${file("sshkeys/id_rsa.22942")}"
   }
 
