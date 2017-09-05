@@ -34,6 +34,10 @@ variable "jumphost_count" {
   default = "1"
 }
 
+variable "eip_count" {
+  default = "2"
+}
+
 variable "flavor_name" {
   default = "s1.medium"
 }
