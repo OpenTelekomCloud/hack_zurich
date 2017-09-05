@@ -1,3 +1,5 @@
 username = ""
 password = ""
 domain_name = ""
+ssh_pub_key = ""
+user_no = ""

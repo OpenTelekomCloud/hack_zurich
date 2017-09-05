@@ -5,6 +5,9 @@ variable "password" {}
 
 variable "domain_name" {}
 
+variable "user_no" {
+}
+
 variable "tenant_name" {
   default = "eu-de"
 }
@@ -24,7 +27,6 @@ variable "project" {
 }
 
 variable "ssh_pub_key" {
-  default = "~/.ssh/id_rsa.pub"
 }
 
 ### VM (Instance) Settings

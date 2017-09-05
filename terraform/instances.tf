@@ -21,17 +21,17 @@ resource "null_resource" "provision" {
     type        = "ssh"
     user        = "ubuntu"
     host        = "${openstack_networking_floatingip_v2.fip.address}"
-    private_key = "${file("sshkeys/id_rsa.22942")}"
+    private_key = "${file("sshkeys/id_rsa.${var.user_no}")}"
   }
 
   provisioner "file" {
-    source      = "credentials/.ostackrc.22942"
-    destination = "/home/ubuntu/"
+    source      = "credentials/.ostackrc.${var.user_no}"
+    destination = "/home/ubuntu/.ostackrc"
   }
 
   provisioner "file" {
-    source      = "credentials/.s3rc.22942"
-    destination = "/home/ubuntu/"
+    source      = "credentials/.s3rc.${var.user_no}"
+    destination = "/home/ubuntu/.s3rc"
   }
 }
 
