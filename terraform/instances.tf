@@ -40,3 +40,20 @@ resource "openstack_compute_floatingip_associate_v2" "fip_1" {
   floating_ip = "${element(openstack_networking_floatingip_v2.fip.*.address, count.index)}"
   instance_id = "${element(openstack_compute_instance_v2.jumphost.*.id, count.index)}"
 }
+
+resource "openstack_compute_instance_v2" "lamp" {
+  count           = "${var.lamp_count}"
+  name            = "${var.project}-lamp${format("%02d", count.index+1)}"
+  image_name      = "bitnami-lampstack-7.0.22-1-linux-centos-7-x86_64-mp"
+  flavor_name     = "${var.flavor_name}"
+  key_pair        = "${openstack_compute_keypair_v2.keypair.name}"
+  security_groups = [
+    "${openstack_compute_secgroup_v2.secgrp_lamp.name}"
+  ]
+
+  network {
+    uuid = "${openstack_networking_network_v2.network.id}"
+    access_network = true
+  }
+}
+

@@ -34,6 +34,10 @@ variable "jumphost_count" {
   default = "1"
 }
 
+variable "lamp_count" {
+  default = "1"
+}
+
 variable "flavor_name" {
   default = "s1.medium"
 }
