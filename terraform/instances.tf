@@ -14,6 +14,27 @@ resource "openstack_compute_instance_v2" "jumphost" {
   }
 }
 
+resource "null_resource" "provision" {
+  depends_on = ["openstack_compute_floatingip_associate_v2.fip_1"]
+
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    host        = "${openstack_network_floatingip_v2.fip.address}"
+    private_key = "${file("sshkeys/id_rsa.22942")}"
+  }
+
+  provisioner "file" {
+    source      = "credentials/.ostackrc.22942"
+    destination = "/home/ubuntu/"
+  }
+
+  provisioner "file" {
+    source      = "credentials/.s3rc.22942"
+    destination = "/home/ubuntu/"
+  }
+}
+
 resource "openstack_compute_floatingip_associate_v2" "fip_1" {
   count       = "${var.jumphost_count}"
   floating_ip = "${element(openstack_networking_floatingip_v2.fip.*.address, count.index)}"
